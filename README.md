@@ -8,6 +8,8 @@ First of all, you will need to have Node JS installed. I am currently on Node `v
 ### Install dependencies
 Run `npm install` from the root of the project to install all of the dependencies. 
 
+Run `npm install express` 
+
 ### Start the server
 Run `nodemon server.js` to get the server running. 
 

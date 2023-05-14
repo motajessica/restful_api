@@ -4,7 +4,7 @@ import { calculateCarValue } from '../services/carValueService';
 export const calculateCarValueController = (req, res) => {
   const { model, year } = req.body;
 
-  if (!model || !year || typeof model !== 'string' || typeof year !== 'number') {
+  if (!model || !year || typeof model !== 'string' || typeof year !== 'number' || year < 0) {
     return res.status(400).json({ error: 'Invalid input' });
   }
 
