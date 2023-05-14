@@ -1,21 +1,27 @@
-import * as quoteService from '../services/quoteService.js'
+import * as quoteService from "../services/quoteService.js";
 
 export const calculateCarValue = (req, res) => {
-  const {model, year} = req.params 
+  const { model, year } = req.params;
 
   const result = quoteService.calculateCarValue(model, year);
-  // implement response 
-}
+  // implement response
+};
 
-export const calculateRiskRating  = (req, res) => {
-  
-}
+export const calculateRiskRating = (req, res) => {};
 
 export const calculateQuote = (req, res) => {
-  
-}
+  try {
+    const carValue = req.body.carValue;
+    const riskRating = req.body.riskRating;
 
-// Just leaving it here for response implementation reference. 
+    const carQuote = quoteService.calculateQuote(carValue, riskRating);
+    res.status(200).json(carQuote);
+  } catch (err) {
+    res.status(403).json({ error: "This is an error." });
+  }
+};
+
+// Just leaving it here for response implementation reference.
 // export const createOneTask = (req, res) => {
 //   const name = req.body.name
 //   const description = req.body.description
@@ -35,4 +41,3 @@ export const calculateQuote = (req, res) => {
 //     res.status(404).send(e)
 //   }
 // }
-

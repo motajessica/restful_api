@@ -11,5 +11,5 @@ server.use('/api/v1/', router)
 
 const PORT = process.env.PORT || 3000
 server.listen(PORT, () => {
-  console.log(`server starterd on port ${PORT}`)
+  console.log(`server started on port ${PORT}`)
 }); 
