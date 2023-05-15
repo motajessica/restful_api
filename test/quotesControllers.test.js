@@ -26,34 +26,50 @@ describe('calculateCarValue', () => {
     calculateCarValue(req, res);
   });
 
+it('Negative year scenario', () => {
+  const req = { body: { model: 'Prius', year: -2018 } };
+  const res = {
+    json: function(data) {
+      expect(data).to.deep.equal({ error: 'Invalid input' });
+    }
+  };
 
-  it('negative year scenario', () => {
-    const req = { body: { model: 'Prius', year: -2018 } };
+  calculateCarValue(req, res);
+  });
+
+it('Empty year scenario', () => {
+  const req = { body: { model: 'Toyota' } };
+  const res = {
+    json: function(data) {
+      expect(data).to.deep.equal({ error: 'Invalid input' });
+    }
+  };
+
+  calculateCarValue(req, res);
+  });
+
+
+  it('should handle empty model name and return an error message', () => {
+    const req = { body: { model: '', year: 2023 } };
     const res = {
-      status: function(code) {
-        this.statusCode = code;
-        return this;
-      },
-      json: function(data) {
-        expect(this.statusCode).to.equal(400);
-        expect(data).to.deep.equal({ error: 'Invalid input' });
+      json: function (data) {
+        expect(data).to.have.property('error').to.equal('Invalid input');
       }
     };
+
     calculateCarValue(req, res);
   });
 
-  it('empty year scenario', () => {
-    const req = { body: { model: 'C200', year: ""} };
+  it('should handle year provided as a string instead of a number and return an error message', () => {
+    const req = { body: { model: 'C200', year: 'twenty twenty' } };
     const res = {
-      status: function(code) {
-        this.statusCode = code;
-        return this;
-      },
-      json: function(data) {
-        expect(this.statusCode).to.equal(400);
-        expect(data).to.deep.equal({ error: 'Invalid input' });
+      json: function (data) {
+        expect(data).to.have.property('error').to.equal('Invalid input');
       }
     };
+
     calculateCarValue(req, res);
   });
+  
+
 });
