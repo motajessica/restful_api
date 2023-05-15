@@ -1,16 +1,15 @@
-import * as quoteService from '../services/quoteService.js'
-import { calculateCarValue } from '../services/carValueService';
+import * as carValueService from '../services/quoteService.js';
 
-export const calculateCarValueController = (req, res) => {
+export const calculateCarValue = (req, res) => {
   const { model, year } = req.body;
 
   if (!model || !year || typeof model !== 'string' || typeof year !== 'number' || year < 0) {
     return res.status(400).json({ error: 'Invalid input' });
   }
 
-  const carValue = calculateCarValue(model, year);
+  const serviceResponse = carValueService.calculateCarValue(model, year);
 
-  res.json({ car_value: carValue });
+  res.json(serviceResponse);
 };
 
 export const calculateRiskRating  = (req, res) => {

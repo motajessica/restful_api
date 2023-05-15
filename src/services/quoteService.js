@@ -6,7 +6,13 @@ export const calculateCarValue = (model, year) => {
     carValue += charCode - 64; 
   }
   carValue = (carValue * 100) + year;
-  return carValue;
+  
+  if (carValue) {
+    return {car_value: carValue}
+   } else {
+    return {error: "there is an error"}
+  }
+ 
 };
 
 
