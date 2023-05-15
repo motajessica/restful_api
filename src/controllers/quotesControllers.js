@@ -1,14 +1,5 @@
 import * as quoteService from "../services/quoteService.js";
 
-export const calculateCarValue = (req, res) => {
-  const { model, year } = req.params;
-
-  const result = quoteService.calculateCarValue(model, year);
-  // implement response
-};
-
-export const calculateRiskRating = (req, res) => {};
-
 export const calculateQuote = (req, res) => {
   try {
     const carValue = req.body.carValue;
