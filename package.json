@@ -7,9 +7,9 @@
 	"scripts": {
 		"start": "nodemon src/server.js",
 		"build": "tsc",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "jest"
 	},
-	"author": "Team 4",
+	"author": "",
 	"license": "ISC",
 	"dependencies": {
 		"dotenv": "^16.0.3",
@@ -17,6 +17,9 @@
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.22",
+		"@types/jest": "^29.5.1",
+		"jest": "^29.5.0",
+		"ts-jest": "^29.1.0",
 		"typescript": "^5.0.4"
 	}
 }
