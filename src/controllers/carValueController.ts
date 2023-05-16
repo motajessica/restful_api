@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
 
-export const calculateCarValue = (req: Request, res: Response): void => {  
-}
+export const calculateCarValue = (req: Request, res: Response): void => {
+  
+};
