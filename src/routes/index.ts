@@ -1,6 +1,6 @@
 import express from 'express';
 import { Router } from 'express';
-import * as quotesController from '../controllers/quotesController';
+import * as quotesController from '../controllers/quoteController';
 import * as carValueController from '../controllers/carValueController';
 import * as riskRatingController from '../controllers/riskRatingController';
 
