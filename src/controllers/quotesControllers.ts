@@ -4,8 +4,8 @@ import { Quote } from "../types/Quote";
 
 export const calculateQuote = (req: Request, res: Response) => {
   try {
-    const carValue: number = req.body.carValue;
-    const riskRating: number = req.body.riskRating;
+    const carValue = req.body.carValue;
+    const riskRating = req.body.riskRating;
 
     const carQuote:Quote = quoteService.calculateQuote(carValue, riskRating);
     res.status(200).json(carQuote);
