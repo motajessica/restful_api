@@ -1,104 +1,33 @@
 import { calculateCarValue } from '../services/carValueService';
 
 describe('calculateCarValue', () => {
-  it('should return the correct car value', () => {
-    const model = 'Civic';
-    const year = 2014;
-    const expected = { car_value: 6614 };
+  interface TestCase {
+    description: string;
+    model: string;
+    year: number | string;
+    expected: { car_value?: number; error?: string };
+  }
 
-    const result = calculateCarValue(model, year);
+  const testCases: TestCase[] = [
+    { description:'Happy path', model: 'Civic', year: 2014, expected: { car_value: 6614 } },
+    { description:'Numbers only are acceptable', model: '911', year: 2020, expected: { car_value: 2020 } },
+    { description:'Negative year', model: 'Prius', year: -2018, expected: { error: 'Invalid input' } },
+    { description:'Year provided as a string instead of a number', model: 'C200', year: 'twenty twenty', expected: { error: 'Invalid input' } },
+    { description:'Empty year', model: 'Toyota', year: '', expected: { error: 'Invalid input' } },
+    { description:'Empty model name', model: '', year: 2023, expected: { error: 'Invalid input' } },
+    { description:'Minimum valid year', model: 'I30', year: 1830, expected: { error: 'Invalid input' } },
+    { description:'Year in the future', model: 'Camry', year: 2025, expected: { error: 'Invalid input' } },
+    { description:'Model with -', model: 'CR-V', year: 2021, expected: { car_value: 6321 } },
+    { description:'Model with number are acceptable', model: 'A4', year: 2019, expected: { car_value: 2119 } },
+    { description:'Year with decimal number', model: 'Civic', year: 2020.05, expected: { error: 'Invalid input' } },
+  ];
 
-    expect(result).toEqual(expected);
+  testCases.forEach((testCase, index) => {
+    it(`should return the correct result for test case ${index + 1}`, () => {
+      const { model, year, expected } = testCase;
+      const isNumberYear = typeof year === 'number';
+      const result = calculateCarValue(model, isNumberYear ? year : parseInt(year as string, 10));
+      expect(result).toEqual(expected);
+    });
   });
-
-  it('should return the correct car value for numbers only in the model name', () => {
-    const model = '911';
-    const year = 2020;
-    const expected = { car_value: 2020 };
-
-    const result = calculateCarValue(model, year);
-
-    expect(result).toEqual(expected);
-  });
-
-  it('should return an error for a negative year', () => {
-    const model = 'Prius';
-    const year = -2018;
-    const expected = { error: 'Invalid input' };
-
-    const result = calculateCarValue(model, year);
-
-    expect(result).toEqual(expected);
-  });
-
-  it('should return an error for an empty year', () => {
-    const model = 'Toyota';
-    const year: any = ""; 
-    const expected = { error: 'Invalid input' };
-
-    const result = calculateCarValue(model, year);
-
-    expect(result).toEqual(expected);
-  });
-
-  it('should return an error for empty model name', () => {
-    const model = '';
-    const year = 2023;
-    const expected = { error: 'Invalid input' };
-
-    const result = calculateCarValue(model, year);
-
-    expect(result).toEqual(expected);
-  });
-
-  it('should return an error for the minimum valid year', () => {
-    const model = 'I30';
-    const year = 1830;
-    const expected = { error: 'Invalid input' };
-
-    const result = calculateCarValue(model, year);
-
-    expect(result).toEqual(expected);
-  });
-
-  it('should return an error for a year in the future', () => {
-    const model = 'Camry';
-    const year = 2025;
-    const expected = { error: 'Invalid input' };
-
-    const result = calculateCarValue(model, year);
-
-    expect(result).toEqual(expected);
-  });
-
-  it('should return the correct car value for a model with "-"', () => {
-    const model = 'CR-V';
-    const year = 2021;
-    const expected = { car_value: 6321 };
-
-    const result = calculateCarValue(model, year);
-
-    expect(result).toEqual(expected);
-  });
-
-  it('should return the correct car value for a model with numbers', () => {
-    const model = 'A4';
-    const year = 2019;
-    const expected = { car_value: 2119 };
-
-    const result = calculateCarValue(model, year);
-
-    expect(result).toEqual(expected);
-  });
-
-  it('should return an error for a year with a decimal number', () => {
-    const model = 'Civic';
-    const year = 2020.05;
-    const expected = { error: 'Invalid input' };
-
-    const result = calculateCarValue(model, year);
-
-    expect(result).toEqual(expected);
-  });
-
 });
