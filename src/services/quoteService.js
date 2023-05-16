@@ -18,3 +18,4 @@ export const calculateQuote = (carValue, riskRating) => {
 
   return output;
 };
+

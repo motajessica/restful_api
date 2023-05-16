@@ -6,15 +6,17 @@
 	"type": "module",
 	"scripts": {
 		"start": "nodemon src/server.js",
+		"build": "tsc",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"author": "Ram Manthry",
+	"author": "Team 4",
 	"license": "ISC",
 	"dependencies": {
 		"dotenv": "^16.0.3",
 		"express": "^4.18.2"
 	},
 	"devDependencies": {
-		"nodemon": "^2.0.22"
+		"nodemon": "^2.0.22",
+		"typescript": "^5.0.4"
 	}
 }
