@@ -10,8 +10,6 @@ Run `npm install` from the root of the project to install all of the dependencie
 
 Run `npm install express` 
 
-Run `npm install supertest mocha chai --save-dev`
-
 ### Start the server
 Run `nodemon server.js` to get the server running. 
 
