@@ -115,4 +115,6 @@ describe("calculateQuote", () => {
     const actual = calculateQuote(carValue, riskRating);
     expect(actual).toStrictEqual(expected);
   });
+
+  
 });
