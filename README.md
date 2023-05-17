@@ -11,7 +11,7 @@ Run `npm install` from the root of the project to install all of the dependencie
 Run `npm install express` 
 
 ### Start the server
-Run `nodemon server.js` to get the server running. 
+Run `yarn/npm run dev` to get the server running. 
 
 
 
