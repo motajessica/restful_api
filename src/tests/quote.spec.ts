@@ -51,7 +51,7 @@ describe("calculateQuote", () => {
     );
   });
 
-  test("Testing with an average car value and a highest risk rating", () => {
+  test("Testing with zero car value and a highest risk rating", () => {
     //Arrange
     const carValue = 0;
     const riskRating = 3;
