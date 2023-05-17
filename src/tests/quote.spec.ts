@@ -84,6 +84,17 @@ describe("calculateQuote", () => {
     expect(actual).toStrictEqual(expected);
   });
 
+  test("Testing with max largest+1 value in car value and the lowest risk rating", () => {
+    //Arrange
+    const carValue = Number.MAX_SAFE_INTEGER + 1;
+    const riskRating = 1;
+
+    // Act and Assert
+    expect(() => calculateQuote(carValue, riskRating)).toThrow(
+      "Input value is out of range."
+    );
+  });
+
   test("Testing with a decimal car value and the highest risk rating", () => {
     //Arrange
     const carValue = 5000.5;

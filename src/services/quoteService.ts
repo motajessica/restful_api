@@ -10,7 +10,8 @@ export const calculateQuote = (carValue: number, riskRating: number): Quote => {
   if(
     riskRating < 1 ||
     riskRating > 5 ||
-    carValue < 0
+    carValue < 0   ||
+    carValue > Number.MAX_SAFE_INTEGER
   ) {
     throw new Error("Input value is out of range.");
   }
