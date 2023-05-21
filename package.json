@@ -9,7 +9,6 @@
 		"dev": "tsnd src/server.ts",
 		"test": "jest --detectOpenHandles"
 	},
-	"author": "",
 	"license": "ISC",
 	"dependencies": {
 		"@jest-mock/express": "^2.0.1",
