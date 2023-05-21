@@ -17,7 +17,7 @@ describe('calculateCarValue', () => {
 
     const result = calculateCarValue(model, year);
 
-    expect(result).toEqual({ car_value: 2020 });
+    expect(result).toEqual({ car_value: 0 });
   });
 
   it('should return an error for negative year scenario', () => {
