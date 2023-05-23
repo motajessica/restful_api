@@ -1,4 +1,7 @@
 import { calculateCarValue } from '../services/carValueService';
+// const yearErrorMessage = `Invalid input, year must be a number bigger than 1990 and smaller than ${minimumYear}` 
+// const modelErrorMessage = 'Invalid input, model can\'t be blank' 
+import {  yearErrorMessage, modelErrorMessage } from '../services/carValueService'
 
 describe('calculateCarValue', () => {
 
@@ -26,7 +29,7 @@ describe('calculateCarValue', () => {
 
     const result = calculateCarValue(model, year);
 
-    expect(result).toEqual({ error: 'Invalid input' });
+    expect(result).toEqual({ errors: { year: yearErrorMessage  } });
   });
 
   it('should return an error when year is a string instead of a number', () => {
@@ -35,7 +38,7 @@ describe('calculateCarValue', () => {
 
     const result = calculateCarValue(model, year as unknown as number);
 
-    expect(result).toEqual({ error: 'Invalid input' });
+    expect(result).toEqual({ errors: { year: yearErrorMessage  } });
   });
 
   it('should return an error when empty year is null', () => {
@@ -44,7 +47,7 @@ describe('calculateCarValue', () => {
 
     const result = calculateCarValue(model, year as unknown as number);
 
-    expect(result).toEqual({ error: 'Invalid input' });
+    expect(result).toEqual({ errors: { year: yearErrorMessage } });
   });
 
   it('should return an error when model is an empty string', () => {
@@ -53,7 +56,7 @@ describe('calculateCarValue', () => {
 
     const result = calculateCarValue(model, year);
 
-    expect(result).toEqual({ error: 'Invalid input' });
+    expect(result).toEqual({ errors: { model: modelErrorMessage } });
   });
 
   it('should return an error when minimum year is before the minimum acceptable', () => {
@@ -62,7 +65,7 @@ describe('calculateCarValue', () => {
 
     const result = calculateCarValue(model, year);
 
-    expect(result).toEqual({ error: 'Invalid input' });
+    expect(result).toEqual({ errors: { year: yearErrorMessage } });
   });
 
   it('should return an error for year in the future scenario', () => {
@@ -71,7 +74,7 @@ describe('calculateCarValue', () => {
 
     const result = calculateCarValue(model, year);
 
-    expect(result).toEqual({ error: 'Invalid input' });
+    expect(result).toEqual({ errors: { year: yearErrorMessage  } });
   });
 
   it('should return the correct car value when model has an hyphen', () => {
@@ -98,16 +101,16 @@ describe('calculateCarValue', () => {
 
     const result = calculateCarValue(model, year);
 
-    expect(result).toEqual({ error: 'Invalid input' });
+    expect(result).toEqual({ errors: { year: yearErrorMessage  } });
   });
 
-  it('should return an error when year is null', () => {
-    const model = 'i30';
+  it('should return an error when year and number is null', () => {
+    const model = null;
     const year = null;
 
-    const result = calculateCarValue(model, year as unknown as number);
+    const result = calculateCarValue(model as unknown as string, year as unknown as number);
 
-    expect(result).toEqual({ error: 'Invalid input' });
+    expect(result).toEqual({ errors: { year: yearErrorMessage, model: modelErrorMessage } });
   });
 
   it('should return an error when model is nulll', () => {
@@ -116,7 +119,7 @@ describe('calculateCarValue', () => {
 
     const result = calculateCarValue(model as unknown as string, year);
 
-    expect(result).toEqual({ error: 'Invalid input' });
+    expect(result).toEqual({ errors: { model: modelErrorMessage } });
   });
 
 
