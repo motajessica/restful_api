@@ -7,7 +7,7 @@ on:
 
 env:
   PROJECT_ID: cars-api-387604  
-  SERVICE: cars-api 
+  SERVICE: car-api 
   REGION: australia-southeast2 
   
 jobs: 
