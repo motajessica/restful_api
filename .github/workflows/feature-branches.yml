@@ -1,15 +1,10 @@
 name: Build and Test
 
 on: 
-  pull_request:
-    branches:
-      - master
+  push: 
+    branches: 
+      - feature/*
 
-env:
-  PROJECT_ID: cars-api-387604  
-  SERVICE: car-api 
-  REGION: australia-southeast2 
-  
 jobs: 
   build_test: 
     runs-on: ubuntu-latest
@@ -31,27 +26,5 @@ jobs:
 
       - name: Run Tets
         run: npm run test
-      
-      - name: Google Auth
-        id: auth
-        uses: 'google-github-actions/auth@v0'
-        with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
-      - name: Deploy to Cloud Run
-        id: deploy
-        uses: google-github-actions/deploy-cloudrun@v0
-        with:
-          service: ${{ env.SERVICE }}
-          region: ${{ env.REGION }}
-          source: ./
-
-      - name: Show Output
-        run: echo ${{ steps.deploy.outputs.url }}
-      
-      
-      
-      
-      
-      
       
