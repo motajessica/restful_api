@@ -5,7 +5,7 @@ export const calculateQuote = (carValue: number, riskRating: number): Quote => {
     typeof carValue !== "number" ||
     typeof riskRating !== "number"
   ) {
-    throw new Error("This is an type error.");
+    throw ("This is an type error.");
   }
   if(
     riskRating < 1 ||
@@ -13,7 +13,7 @@ export const calculateQuote = (carValue: number, riskRating: number): Quote => {
     carValue < 0   ||
     carValue > Number.MAX_SAFE_INTEGER
   ) {
-    throw new Error("Input value is out of range.");
+    throw ("Input value is out of range.");
   }
 
   const yearlyPremium = Math.floor((carValue * riskRating) / 100);

@@ -9,8 +9,8 @@ export const calculateQuote = (req: Request, res: Response):void => {
 
     const carQuote:Quote = quoteService.calculateQuote(carValue, riskRating);
     res.status(200).json(carQuote);
-  } catch (err) {
-    res.status(403).json({ error: 'This is an error.' });
+  } catch (Error) {
+    res.status(403).json({Error});
   }
 };
 
