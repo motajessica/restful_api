@@ -8,7 +8,7 @@ import { Request, Response } from "express";
 interface MockRequest extends Request {
   body: {
     carValue: number;
-    riskRating: string;
+    riskRating: number;
   };
 }
 
