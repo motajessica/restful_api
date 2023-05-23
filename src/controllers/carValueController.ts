@@ -6,8 +6,8 @@ export const calculateCarValue = (req: Request, res: Response): void => {
   console.log(model, year);
 
   const serviceResponse = carValueService.calculateCarValue(model, year);
-  if (serviceResponse.error) {
-    res.json({ error: serviceResponse.error });
+  if (serviceResponse.errors) {
+    res.json({ errors: serviceResponse.errors });
   } else {
     res.json({ car_value: serviceResponse.car_value });
   }
