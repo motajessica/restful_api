@@ -1,5 +1,4 @@
 import { calculateCarValue } from '../services/carValueService';
-
 // const yearErrorMessage = `Invalid input, year must be a number bigger than 1990 and smaller than ${minimumYear}` 
 // const modelErrorMessage = 'Invalid input, model can\'t be blank' 
 import {  yearErrorMessage, modelErrorMessage } from '../services/carValueService'

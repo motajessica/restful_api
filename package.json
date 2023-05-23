@@ -4,7 +4,7 @@
 	"description": "Tasks API",
 	"main": "src/server.js",
 	"scripts": {
-		"start": "nodemon ./build/server.js",
+		"start": "npm run build && node build/server.js",
 		"build": "tsc",
 		"dev": "tsnd src/server.ts",
 		"test": "jest --detectOpenHandles"
