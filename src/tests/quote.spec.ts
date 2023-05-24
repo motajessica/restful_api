@@ -25,7 +25,7 @@ describe("calculateQuote", () => {
   
     // Act and Assert
     expect(() => calculateQuote(carValue, riskRating)).toThrow(
-      "Input value is out of range."
+      "This is an error."
     );
   });
 
@@ -36,7 +36,7 @@ describe("calculateQuote", () => {
   
     // Act and Assert
     expect(() => calculateQuote(carValue, riskRating)).toThrow(
-      "Input value is out of range."
+      "This is an error."
     );
   });
 
@@ -47,7 +47,7 @@ describe("calculateQuote", () => {
   
     // Act and Assert
     expect(() => calculateQuote(carValue, riskRating)).toThrow(
-      "Input value is out of range."
+      "This is an error."
     );
   });
 
@@ -56,15 +56,10 @@ describe("calculateQuote", () => {
     const carValue = 0;
     const riskRating = 3;
 
-    // Act
-    const expected = {
-      monthPremium: 0,
-      yearlyPremium: 0,
-    };
-
-    // Assert
-    const actual = calculateQuote(carValue, riskRating);
-    expect(actual).toStrictEqual(expected);
+    // Act and Assert
+    expect(() => calculateQuote(carValue, riskRating)).toThrow(
+      "This is an error."
+    );
   });
 
 
@@ -91,7 +86,7 @@ describe("calculateQuote", () => {
 
     // Act and Assert
     expect(() => calculateQuote(carValue, riskRating)).toThrow(
-      "Input value is out of range."
+      "This is an error."
     );
   });
 
