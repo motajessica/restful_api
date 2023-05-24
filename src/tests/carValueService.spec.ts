@@ -2,7 +2,7 @@ import { calculateCarValue } from '../services/carValueService';
 const minimumYear = new Date().getFullYear();
 const modelErrorMessage = 'Invalid input, model can\'t be empty '
 const yearErrorMessage =  `Invalid input, year must be a number bigger than 1990 and smaller than ${minimumYear}`
-const baseErrorMessage =  "Both year and model are required"
+const baseErrorMessage =  "Invalid input, both year and model can\'t be empty"
 
 describe('calculateCarValue', () => {
 
@@ -120,7 +120,7 @@ describe('calculateCarValue', () => {
 
     const result = calculateCarValue(model as unknown as string, year);
 
-    expect(result).toEqual({ errors: { base: baseErrorMessage } });
+   expect(result).toEqual({ errors: { base: baseErrorMessage } });
   });
 
 

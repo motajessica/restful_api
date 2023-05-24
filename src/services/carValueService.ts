@@ -1,7 +1,7 @@
 const minimumYear = new Date().getFullYear();
 const modelErrorMessage = 'Invalid input, model can\'t be empty '
 const yearErrorMessage =  `Invalid input, year must be a number bigger than 1990 and smaller than ${minimumYear}`
-const baseErrorMessage =  "Both year and model are required"
+const baseErrorMessage =  "Invalid input, both year and model can\'t be empty"
 
 const isYearInvalid = (year: string | null) => {
 const parsedYear = Number(year);
@@ -16,6 +16,7 @@ export const calculateCarValue = (
   model: string | null,
   year: string| null
 ): { car_value?: number; errors?: object } => {
+  
   if(!model || !year) {
     return {errors: {base: baseErrorMessage}}
   } 

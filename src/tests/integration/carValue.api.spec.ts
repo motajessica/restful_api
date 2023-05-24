@@ -3,10 +3,10 @@ import request, { Response } from 'supertest'
 const minimumYear = new Date().getFullYear();
 const modelErrorMessage = 'Invalid input, model can\'t be empty '
 const yearErrorMessage =  `Invalid input, year must be a number bigger than 1990 and smaller than ${minimumYear}`
-const baseErrorMessage =  "Both year and model are required"
+const baseErrorMessage =  "Invalid input, both year and model can\'t be empty"
 
-const callApi = (reqBody: object) => {
-  return request(app).get('/api/v1/calc_car_value').query(reqBody)
+const callApi = (query: object) => {
+  return request(app).get('/api/v1/calc_car_value').query(query)
 }
 
 const assertExpectation = (res: Response, expected: object) => {
