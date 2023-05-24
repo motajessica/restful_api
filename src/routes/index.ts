@@ -6,7 +6,7 @@ import * as calculateRiskRating from '../controllers/riskRatingController'
 
 const router = express.Router()
 
-router.get('/calc_car_value', calculateCarValue.calculateCarValue); 
+router.post('/calc_car_value', calculateCarValue.calculateCarValue); 
 
 router.get('/calc_risk_rating', calculateRiskRating.calculateRiskRating); 
 
