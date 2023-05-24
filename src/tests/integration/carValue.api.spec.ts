@@ -1,9 +1,12 @@
 import app from '../../app'
 import request, { Response } from 'supertest'
-import {  yearErrorMessage, modelErrorMessage } from '../../services/carValueService'
+const minimumYear = new Date().getFullYear();
+const modelErrorMessage = 'Invalid input, model can\'t be empty '
+const yearErrorMessage =  `Invalid input, year must be a number bigger than 1990 and smaller than ${minimumYear}`
+const baseErrorMessage =  "Invalid input, both year and model can\'t be empty"
 
-const callApi = (reqBody: object) => {
-  return request(app).get('/api/v1/calc_car_value').send(reqBody)
+const callApi = (query: object) => {
+  return request(app).get('/api/v1/calc_car_value').query(query)
 }
 
 const assertExpectation = (res: Response, expected: object) => {
@@ -62,7 +65,7 @@ describe('Car Value API', () => {
   
     const model = 'Toyota';
     const year = null;
-    const expected = { errors: { year: yearErrorMessage  } };
+    const expected = { errors: {base: baseErrorMessage} };
 
     const res = await callApi({ model, year });
 
@@ -74,7 +77,7 @@ describe('Car Value API', () => {
   
     const model = '';
     const year = 2023;
-    const expected = { errors: { model: modelErrorMessage } };
+    const expected = { errors: { base: baseErrorMessage } };
 
     const res = await callApi({ model, year });
 
@@ -145,19 +148,18 @@ describe('Car Value API', () => {
   test('should return an error when year and number is null', async () => {
     const model = null;
     const year = null;
-    const expected = { errors: { year: yearErrorMessage, model: modelErrorMessage } };
+    const expected = { errors: { base: baseErrorMessage } };
 
     const res = await callApi({ model, year });
 
     assertExpectation(res, expected)
-
   });
 
   test('should return an error when model is nulll', async () => {
   
     const model = null;
     const year = 2015;
-    const expected = { errors: { model: modelErrorMessage } };
+    const expected = { errors: { base: baseErrorMessage } };
 
     const res = await callApi({ model, year });
     
