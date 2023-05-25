@@ -4,13 +4,16 @@ import { Quote } from "../types/Quote";
 
 export const calculateQuote = (req: Request, res: Response):void => {
   try {
-    const carValue = req.body.carValue;
-    const riskRating = req.body.riskRating;
+    const carValueQuery = req.query.carValue as string;
+    const riskRatingQuery = req.query.riskRating as string;
+
+    const carValue = Number(carValueQuery);
+    const riskRating = Number(riskRatingQuery);
 
     const carQuote:Quote = quoteService.calculateQuote(carValue, riskRating);
     res.status(200).json(carQuote);
-  } catch (err) {
-    res.status(403).json({ error: 'This is an error.' });
+  } catch (Error) {
+    res.status(403).json({Error});
   }
 };
 
